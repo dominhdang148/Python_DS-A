@@ -8,7 +8,8 @@ class MenuClass:
         'Thoát chương trình',
         'Nhập dữ liệu',
         'Xuất dữ liệu',
-        'Tìm kiếm tuyến tính (Linear Search)'
+        'Tìm kiếm tuyến tính (Linear Search)',
+        'Tìm kiếm nhị phân (Binary Search)'
     )
     arr = np.array([])
 
@@ -52,20 +53,33 @@ class MenuClass:
             print("Nhập dữ liệu")
             print("Nhập dữ liệu thành công! Mảng số nguyên sau khi nhập")
             lib.PrintArray(self.arr)
-            print(self.arr.dtype)
         # endregion
 
         # region Case 2
         elif self.menuList[menu] == "Xuất dữ liệu":
             print("Mảng số nguyên hiện hành")
             lib.PrintArray(self.arr)
-            print(self.arr.__len__())
         # endregion
 
         # region Case 3
         elif self.menuList[menu] == "Tìm kiếm tuyến tính (Linear Search)":
             n = int(input("Xin hãy nhập số cần tìm: "))
             result,count = lib.LinearSearch(self.arr, n)
+            if result == -1:
+                print('Không tìm thấy số ' + str(n)+' trong mảng!')
+            else:
+                print('Số '+str(n)+' nằm ở vị trí '+str(result+1))
+            print("Thuật toán thực hiện trong "+str(count)+" bước")
+            print("Mảng số nguyên hiện hành")
+            lib.PrintArray(self.arr)
+        # endregion
+
+        # region Case 4
+        elif self.menuList[menu] == "Tìm kiếm nhị phân (Binary Search)":
+            n = int(input("Xin hãy nhập số cần tìm: "))
+            print("Thuật toán tìm kiếm này yêu cầu phải sắp xếp mảng sổ nguyên theo chiều tăng dần")
+            self.arr = np.sort(self.arr)
+            result,count = lib.BinarySearch(self.arr, n)
             if result == -1:
                 print('Không tìm thấy số ' + str(n)+' trong mảng!')
             else:

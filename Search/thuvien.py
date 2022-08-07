@@ -29,4 +29,33 @@ def LinearSearch(array, number):
             break
         else:
             i += 1
-    return result,count
+    return result, count
+
+
+def BinarySearch(arr, number):
+    left = 0
+    right = arr.__len__()-1
+    count = 0
+    while left <= right:
+        count += 1
+        mid = int((left+right)/2)
+        if number == arr[mid]:
+            return mid, count
+        elif number < arr[mid]:
+            right = mid-1
+        else:
+            left = mid+1
+    return -1, count
+
+
+def BinarySearch_Recursion(arr, number, left, right):
+    if left > right:
+        return -1
+    mid = (left+right)/2
+    if number == arr[mid]:
+        return mid
+    else:
+        if(number > arr[mid]):
+            return BinarySearch(arr, number, mid+1, r)
+        else:
+            return BinarySearch(arr, number, left, mid-1)
