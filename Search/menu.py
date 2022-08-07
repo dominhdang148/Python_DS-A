@@ -46,7 +46,7 @@ class MenuClass:
             print("Thoát chương trình")
         # endregion
 
-        # reigon Case 1
+        # region Case 1
         elif self.menuList[menu] == "Nhập dữ liệu":
             temp = lib.ReadFile('file.txt')
             self.arr = temp.astype(int)
