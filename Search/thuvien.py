@@ -1,6 +1,10 @@
 import numpy as np
 
 
+def Find_Nearest_Mid(array, left, right, value):
+    return left+((right-left))/(array[right]-array[left])*(value-array[left])
+
+
 def ReadFile(path):
     line = "123"
     with open(path, 'r') as fileReader:
@@ -45,17 +49,48 @@ def BinarySearch(arr, number):
             right = mid-1
         else:
             left = mid+1
-    return -1, count
+    if left > right:
+        return -1, count
 
 
 def BinarySearch_Recursion(arr, number, left, right):
     if left > right:
         return -1
-    mid = (left+right)/2
+    mid = int((left+right)/2)
     if number == arr[mid]:
         return mid
     else:
         if(number > arr[mid]):
-            return BinarySearch(arr, number, mid+1, r)
+            return BinarySearch_Recursion(arr, number, mid+1, right)
         else:
-            return BinarySearch(arr, number, left, mid-1)
+            return BinarySearch_Recursion(arr, number, left, mid-1)
+
+
+def InterpolationSearch(arr, number):
+    left = 0
+    right = arr.__len__()-1
+    count = 0
+    while left <= right:
+        count += 1
+        mid = int(Find_Nearest_Mid(arr, left, right, number))
+        if mid > right or mid < left:
+            return -1, count
+        if number == arr[mid]:
+            return mid, count
+        elif number < arr[mid]:
+            right = mid-1
+        else:
+            left = mid+1
+    if left > right:
+        return -1, count
+
+    if left > right:
+        return -1
+    mid = int(Find_Nearest_Mid(arr, left, right, number))
+    if number == arr[mid]:
+        return mid
+    else:
+        if(number > arr[mid]):
+            return InterpolationSearch_Recursion(arr, number, mid+1, right)
+        else:
+            return InterpolationSearch_Recursion(arr, number, left, mid-1)

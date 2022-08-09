@@ -9,7 +9,8 @@ class MenuClass:
         'Nhập dữ liệu',
         'Xuất dữ liệu',
         'Tìm kiếm tuyến tính (Linear Search)',
-        'Tìm kiếm nhị phân (Binary Search)'
+        'Tìm kiếm nhị phân (Binary Search)',
+        'Tìm kiếm nội suy (Interpolation Search)'
     )
     arr = np.array([])
 
@@ -63,32 +64,58 @@ class MenuClass:
 
         # region Case 3
         elif self.menuList[menu] == "Tìm kiếm tuyến tính (Linear Search)":
-            n = int(input("Xin hãy nhập số cần tìm: "))
-            result,count = lib.LinearSearch(self.arr, n)
-            if result == -1:
-                print('Không tìm thấy số ' + str(n)+' trong mảng!')
-            else:
-                print('Số '+str(n)+' nằm ở vị trí '+str(result+1))
-            print("Thuật toán thực hiện trong "+str(count)+" bước")
-            print("Mảng số nguyên hiện hành")
-            lib.PrintArray(self.arr)
+            try:
+                n = int(input("Xin hãy nhập số cần tìm: "))
+                result, count = lib.LinearSearch(self.arr, n)
+                if result == -1:
+                    print('Không tìm thấy số ' + str(n)+' trong mảng!')
+                else:
+                    print('Số '+str(n)+' nằm ở vị trí '+str(result))
+                    print("Thuật toán thực hiện trong "+str(count)+" bước")
+                    print("Mảng số nguyên hiện hành")
+                    lib.PrintArray(self.arr)
+            except:
+                print("Nhập không hợp lệ! Xin hãy nhập lại")
         # endregion
 
         # region Case 4
         elif self.menuList[menu] == "Tìm kiếm nhị phân (Binary Search)":
             n = int(input("Xin hãy nhập số cần tìm: "))
-            print("Thuật toán tìm kiếm này yêu cầu phải sắp xếp mảng sổ nguyên theo chiều tăng dần")
+            print(
+                "Thuật toán tìm kiếm này yêu cầu phải sắp xếp mảng sổ nguyên theo chiều tăng dần")
             self.arr = np.sort(self.arr)
-            result,count = lib.BinarySearch(self.arr, n)
+            result, count=lib.BinarySearch(self.arr, n)
+            # result = lib.BinarySearch_Recursion(
+            #     self.arr, n, 0, self.arr.__len__()-1)
             if result == -1:
                 print('Không tìm thấy số ' + str(n)+' trong mảng!')
             else:
-                print('Số '+str(n)+' nằm ở vị trí '+str(result+1))
+                print('Số '+str(n)+' nằm ở vị trí '+str(result))
             print("Thuật toán thực hiện trong "+str(count)+" bước")
             print("Mảng số nguyên hiện hành")
             lib.PrintArray(self.arr)
         # endregion
 
+        # region Case 5
+        elif self.menuList[menu] == "Tìm kiếm nội suy (Interpolation Search)":
+            n = int(input("Xin hãy nhập số cần tìm: "))
+            print(
+                "Thuật toán tìm kiếm này yêu cầu phải sắp xếp mảng sổ nguyên theo chiều tăng dần")
+            self.arr = np.sort(self.arr)
+            result, count=lib.InterpolationSearch(self.arr, n)
+            # result = lib.BinarySearch_Recursion(
+            #     self.arr, n, 0, self.arr.__len__()-1)
+            if result == -1:
+                print('Không tìm thấy số ' + str(n)+' trong mảng!')
+            else:
+                print('Số '+str(n)+' nằm ở vị trí '+str(result))
+            print("Thuật toán thực hiện trong "+str(count)+" bước")
+            print("Mảng số nguyên hiện hành")
+            lib.PrintArray(self.arr)
+        # endregion
+
+        # region Default
         else:
             print("Chương trình chưa hỗ trợ chức năng này")
         input("Nhấn phím Enter để tiếp tục")
+        # endregion
