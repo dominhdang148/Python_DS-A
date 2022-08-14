@@ -62,7 +62,8 @@ def Partition(arr, left, right):
             arr[greater_than_pivot], arr[less_than_pivot] = arr[less_than_pivot], arr[greater_than_pivot]
         else:
             break
-
+    
+    # Đổi chỗ cho biến làm chuẩn pivot về đúng vị trí
     arr[pivot_index] = arr[less_than_pivot]
     arr[less_than_pivot] = pivot
     return less_than_pivot
