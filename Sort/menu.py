@@ -10,7 +10,7 @@ class MenuClass:
         'Xuất dữ liệu',
         'Sắp xếp nổi bọt (Bubble Sort)',
         'Sắp xếp chèn (Insertion Sort)',
-        'Chức năng 5'
+        'Sắp xếp nhanh (QuickSort)'
     )
     arr = np.array([])
 
@@ -81,8 +81,12 @@ class MenuClass:
         # endregion
 
         # region Case 5
-        elif self.menuList[menu] == "Chức năng 5":
-            print("Chức năng 5")
+        elif self.menuList[menu] == "Sắp xếp nhanh (QuickSort)":
+            print("Mảng trước khi sắp xếp:")
+            lib.PrintArray(self.arr)
+            lib.QuickSort(self.arr, 0, self.arr.__len__()-1)
+            print("Mảng sau khi sắp xếp: ")
+            lib.PrintArray(self.arr)
         # endregion
 
         # region Default
