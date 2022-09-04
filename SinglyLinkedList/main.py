@@ -7,4 +7,3 @@ while choice != 0:
     choice = menu.ChonMenu()
     menu.XuLyMenu(choice)
 system('cls')
-

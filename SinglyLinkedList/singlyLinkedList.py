@@ -7,13 +7,16 @@ class SinglyLinkedList:
         self.head = None
         self.size = 0
 
+    def isEmpty(self):
+        return self.tail == None and self.head == None
+
     def append(self, data):
         node = Node(data)
-        if self.head:
-            self.head.next = node
+        if self.isEmpty():
+            self.tail = node
             self.head = node
         else:
-            self.tail = node
+            self.head.next = node
             self.head = node
         self.size += 1
 
@@ -31,9 +34,13 @@ class SinglyLinkedList:
             if current.data == data:
                 if current == self.tail:
                     self.tail = current.next
+                elif current == self.head:
+                    prev.next = None
+                    self.head = prev
                 else:
                     prev.next = current.next
                 self.size -= 1
+                del current
                 return
             prev = current
             current = current.next
@@ -48,9 +55,6 @@ class SinglyLinkedList:
         self.tail = None
         self.head = None
         self.size = 0
-
-    def isEmpty(self):
-        return self.tail == None and self.head == None
 
     def insert_start(self, data):
         if self.isEmpty():
@@ -74,7 +78,7 @@ class SinglyLinkedList:
                 if current == self.head:
                     self.append(data)
                 else:
-                # Case 4: previous node là node đầu hoặc giữa --> thay đổi liên kết
+                    # Case 4: previous node là node đầu hoặc giữa --> thay đổi liên kết
                     node.next = current.next
                     current.next = node
                     self.size += 1
